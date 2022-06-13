@@ -33,7 +33,7 @@
 }
 
 html {
-    background: linear-gradient(172.45deg, var(--primary-color) 54.02%, var(--dark-color) 97.41%);
+    background: linear-gradient(172.45deg, var(--primary-color) 24.02%, var(--dark-color) 97.41%);
     font-size: 60.5%;
     color: var(--text-color);
     font-family: var(--font-family-text);
@@ -100,6 +100,7 @@ button {
     margin-top: 45px;
     width: 100%;
     min-width: 320px;
+    position: relative;
 }
 
 .trendingPreview-header, .categoriesPreview-title {
@@ -120,7 +121,7 @@ button {
     border-radius: 8px;
 }
 
-.categoriesPreview-list, .categories-list {
+.categoriesPreview-list, .categoriesPreview-listTV, .categories-list {
     display: flex;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -233,6 +234,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .trendingPreview-btn {
@@ -262,31 +264,40 @@ button {
     margin-top: 13px;
 }
 
-.trendingPreview-movieList {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    height: 241px;
+.trendingPreview-movieList, .trendingPreview-serieList {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    min-height: 251px;
     width: 90%;
     min-width: 288px;
     margin: 25px auto;
-    padding-bottom: 16px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #0808084d;
 }
 
-.trendingPreview-movieList .movie-container {
-    display: inline-block;
+
+.trendingPreview-movieList .movie-container, .trendingPreview-serieList .movie-container {
+    flex: 0 0 auto;
     margin-right: 8px;
+    display: inline-block;
 }
 
-.trendingPreview-movieList .movie-container .movie-img {
-    height: 225px;
-    min-height: 225px;
+
+.trendingPreview-movieList .movie-container .movie-img, .trendingPreview-serieList .movie-container .movie-img  {
+    min-height: 100%;
     max-height: 225px;
     width: 150px;
     min-width: 150px;
     max-width: 150px;
+    display: block;
 }
 
+.trendingPreview-container h3 {
+    width: 89%;
+    margin: 0 auto;
+}
 
   /* Categories */
 
@@ -296,16 +307,16 @@ button {
     min-width: 288px;
 }
 .category-container {
-    width: 115px;
+    width: auto;
     min-width: 108px;
     height: 40px;
     background-color: var(--secondary-color);
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .category-title {
     height: auto;
-    cursor: pointer;
     white-space: nowrap;
     overflow: hidden;
     text-align: center;
@@ -520,6 +531,6 @@ footer {
 }
 
   /* Navigation */
-  .inactive {
+.inactive {
     display: none;
-  }
+}
