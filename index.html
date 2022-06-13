@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/css/main.css">
+    <!--<link rel="stylesheet" href="./src/css/tablet.css" media="screen and (min-width: 666px)">
+    <link rel="stylesheet" href="./src/css/desktop.css" media="screen and (min-width: 1024px)">-->
+    <title>RecapMovies</title>
+</head>
+<body>
+    <header id="header" class="header-container">
+        <section>
+            <span class="header-arrow inactive">&lt;</span>
+            <span class="header-logo"></span> 
+            <h1 class="header-title">RecapMovies</h1>
+            <h1 class="header-title header-title--categoryView inactive">Acción</h1>
+        </section>
+    
+        <form id="searchForm" class="header-searchForm">
+          <input class="search-button" type="text" placeholder="Search a movie" />
+          <button><span></span></button>
+        </form>
+      </header>
+      
+      <section id="categoriesPreview" class="categoriesPreview-container">
+        <div class="categoriesPreview-container__div">
+            <h2 class="categoriesPreview-title">Categorías</h2>
+    
+            <article class="categoriesPreview-list">
+                <div class="category-container">
+                    <h3 id="id28" class="category-title">Romance</h3>
+                </div>
+            
+                <div class="category-container">
+                    <h3 id="id16" class="category-title">Drama</h3>
+                </div>
+            
+                <div class="category-container">
+                    <h3 id="id14" class="category-title">Acción</h3>
+                </div>
+                <div class="category-container">
+                    <h3 id="id16" class="category-title">Suspenso</h3>
+                </div>
+                <div class="category-container">
+                    <h3 id="id16" class="category-title">Suspenso</h3>
+                </div>
+            </article>
+        </div>
+      </section>
+      <section id="trendingPreview" class="trendingPreview-container">
+        <div class="trendingPreview-header">
+          <h2 class="trendingPreview-title">Tendencias</h2>
+          <button class="trendingPreview-btn"><span></span><p>  See more</p></button>
+        </div>
+    
+        <article class="trendingPreview-movieList">
+          <div class="movie-container">
+            <img
+              src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+              class="movie-img"
+              alt="Nombre de la película"
+            />
+          </div>
+    
+          <div class="movie-container">
+            <img
+              src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+              class="movie-img"
+              alt="Nombre de la película"
+            />
+          </div>
+    
+          <div class="movie-container">
+            <img
+              src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+              class="movie-img"
+              alt="Nombre de la película"
+            />
+          </div>
+        </article>
+      </section>
+    
+    
+    <section id="genericList" class="genericList-container inactive">
+        <div class="genericList-container__div">
+            <div class="movie-container">
+                <img
+                    src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+                    class="movie-img"
+                    alt="Nombre de la película"
+                />
+            </div>
+
+            <div class="movie-container">
+                <img
+                    src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+                    class="movie-img"
+                    alt="Nombre de la película"
+                />
+            </div>
+
+            <div class="movie-container">
+                <img
+                    src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+                    class="movie-img"
+                    alt="Nombre de la película"
+                />
+            </div>
+        </div>
+    </section>
+    
+    <section id="movieDetail" class="movieDetail-container inactive">
+        <div class="movieDetail-container__div">
+            <h1 class="movieDetail-title">Deadpool</h1>
+            <span class="movieDetail-score">7.6</span>
+            <p class="movieDetail-description">
+                Wisecracking mercenary Deadpool battles the evil and powerful Cable and other bad guys to save a boy's life.
+            </p>
+
+            <article class="categories-list">
+                <div class="category-container">
+                    <h3 id="id28" class="category-title">Romance</h3>
+                </div>
+
+                <div class="category-container">
+                    <h3 id="id16" class="category-title">Drama</h3>
+                </div>
+
+                <div class="category-container">
+                    <h3 id="id14" class="category-title">Acción</h3>
+                </div>
+            </article>
+
+            <article class="relatedMovies-container">
+                <h2 class="relatedMovies-title">Películas similares</h2>
+
+                <div class="relatedMovies-scrollContainer">
+                    <div class="movie-container">
+                        <img
+                            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+                            class="movie-img"
+                            alt="Nombre de la película"
+                        />
+                    </div>
+
+                    <div class="movie-container">
+                        <img
+                            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+                            class="movie-img"
+                            alt="Nombre de la película"
+                        />
+                    </div>
+
+                    <div class="movie-container">
+                        <img
+                            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+                            class="movie-img"
+                            alt="Nombre de la película"
+                        />
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>@christopherdavideh • All rights reserved © 2022.</p>
+        <nav>
+            <ul class="footer-social">
+                <li><a href="https://www.linkedin.com/in/christopherdavideh/" target="_blank" rel="noopener" title="LinkedIn"><span class="footer-linkedin"></span></a></li>
+                <li><a href="https://github.com/christopherdavideh" target="_blank" rel="noopener" title="GitHub"><span class="footer-github"></span></a></li>
+                <li><a href="https://twitter.com/christopdavideh" target="_blank" rel="noopener" title="Twitter"><span class="footer-twitter"></span></a></li>
+                <li><a href="https://www.instagram.com/christopherdavideh/" target="_blank" rel="noopener" title="Instagram"><span class="footer-instagram"></span></a></li>
+                <li><a href="https://www.facebook.com/christopherdavideh" target="_blank" rel="noopener" title="Facebook"><span class="footer-facebook"></span></a></li>
+                <li><a href="https://christopherdavideh.com/" target="_blank" rel="noopener" title="My Web"><span class="footer-web"></span></a></li>
+            </ul>
+        </nav>
+    </footer>
+    <script src="./src/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "recapmovies",
+  "version": "1.0.0",
+  "description": "Consuming The Movie Database (TMDB) API with JavaScript",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christopherdavideh/RecapMovies.git"
+  },
+  "keywords": [
+    "api",
+    "rest"
+  ],
+  "author": "@christopherdavideh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/christopherdavideh/RecapMovies/issues"
+  },
+  "homepage": "https://github.com/christopherdavideh/RecapMovies#readme"
+}
