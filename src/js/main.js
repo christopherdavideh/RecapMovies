@@ -3,14 +3,24 @@ const BASE_URL = "https://api.themoviedb.org/3";
 const BASE_URL_IMAGE_POSTER = "https://image.tmdb.org/t/p/w342";
 const BASE_URL_IMAGE_BACKDROP = "https://image.tmdb.org/t/p/w1280";
 
+const api = axios.create({
+    baseURL: BASE_URL,
+    headers: {
+        'Content-Type': 'aplication/json;charset=utf-8',
+    },
+    params: {
+        'api_key': API_KEY,
+    },
+});
 
 
 async function getTrendingMoviesPreview(media_type){
-    /*Uso de fetch() para consumo de API Rest */
-    const res = await fetch(`${BASE_URL}/trending/${media_type}/day?api_key=${API_KEY}`);
-    const data = await res.json();
+    /*Uso de axios() para consumo de API Rest */
+    const { data } = await api(`/trending/${media_type}/day`);
 
     const movies = data.results;
+    (media_type === "movie") ? trendingMoviesPreviewList.innerHTML = "" : trendingTvPreviewList.innerHTML = "";
+
     movies.forEach(movie => {
         let nameClass;
         (media_type === "movie") ? nameClass = "movieList" : nameClass = "serieList";
@@ -48,6 +58,8 @@ async function getCategoryMoviesPreview(media_type){
     const data = await res.json();
 
     const genres = data.genres;
+    (media_type === "movie") ? categoriesPreviewList.innerHTML = "" : categoriesPreviewListTV.innerHTML = "";
+
     genres.forEach(genre => {
         let nameClass;
         (media_type === "movie") ? nameClass = "list" : nameClass = "listTV";
@@ -72,7 +84,3 @@ async function getCategoryMoviesPreview(media_type){
     console.log(genres);
 }
 
-getTrendingMoviesPreview("movie");
-getTrendingMoviesPreview("tv");
-getCategoryMoviesPreview("movie");
-getCategoryMoviesPreview("tv");
