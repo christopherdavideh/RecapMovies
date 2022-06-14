@@ -85,7 +85,7 @@ button {
     border: none;
     color: var(--text-color);
     font-weight: 600;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     cursor: pointer;
 }
 
@@ -123,7 +123,7 @@ button {
 
 .categoriesPreview-list, .categoriesPreview-listTV, .categories-list {
     display: flex;
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
     padding-bottom: 16px;
@@ -140,9 +140,9 @@ button {
 
 .header-container--long {
     background-image: url('https://pics.filmaffinity.com/Deadpool-777527803-large.jpg');
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%), url(https://pics.filmaffinity.com/Deadpool-777527803-large.jpg);
-    background-size: cover !important;
-    height: 480px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.65) 89.27%, rgba(0, 0, 0, 0) 39.17%), url(https://pics.filmaffinity.com/Deadpool-777527803-large.jpg);
+    background-size: cover;
+    height: 900px;
     position: fixed;
     top: 0;
     width: 100%;
@@ -170,11 +170,26 @@ button {
 }
 
 .header-arrow {
+    /*display: inline-block;
     font-weight: var(--font-weight-text2);
     font-size: 36px;
     margin-bottom: 16px;
+    margin-left: 10px;
     cursor: pointer;
-    display: inline-block;
+    position: absolute;*/
+    top: calc(6% - 7.5px);
+    border-radius: 50px;
+    background-color: var(--secondary-color);
+    width: 50px;
+    height: 50px;
+    padding-top: 6px;
+    font-size: 3rem;
+    text-align: center;
+    position: fixed;
+    background-blend-mode: multiply;
+    opacity: 0.8;
+    z-index: 1;
+    cursor: pointer;
 }
 .header-arrow--white {
     color: var(--purple-light-1);
@@ -237,10 +252,10 @@ button {
     margin-bottom: 20px;
 }
 
-.trendingPreview-btn {
+.trendingPreview-btn, .trendingPreviewSeries-btn {
     border-radius: 10px;
-    height: 40px;
-    width: 108px;
+    height: 25px;
+    width: 88px;
     display: flex;
     justify-content: center;
     background-color: var(--text-color);
@@ -248,20 +263,20 @@ button {
     color: var(--primary-color);
 }
 
-.trendingPreview-btn span {
+.trendingPreview-btn span, .trendingPreviewSeries-btn span {
     display: inline-block;
     background-image: url("../icon/filmplus_icon.svg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 20px;
-    width: 20px;
-    margin-top: 10px;
-    margin-right: 7.5px;
+    height: 15px;
+    width: 15px;
+    margin-top: 5px;
+    margin-right: 4px;
 }
 
-.trendingPreview-btn p {
-    margin-top: 13px;
+.trendingPreview-btn p, .trendingPreviewSeries-btn p {
+    margin-top: 6px;
 }
 
 .trendingPreview-movieList, .trendingPreview-serieList {
@@ -295,8 +310,8 @@ button {
 }
 
 .trendingPreview-container h3 {
-    width: 89%;
-    margin: 0 auto;
+    width: 70%;
+    margin-left: 5px;
 }
 
   /* Categories */
@@ -313,6 +328,21 @@ button {
     background-color: var(--secondary-color);
     border-radius: 10px;
     cursor: pointer;
+}
+
+.light {
+    width: auto;
+    min-width: 108px;
+    height: 40px;
+    background-color: var(--text-color);
+    color: var(--primary-color);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.light .category-title {
+    color: var(--primary-color);
+    padding-top: 10px;
 }
 
 .category-title {
@@ -369,7 +399,8 @@ button {
     flex-wrap: wrap;
     width: 90%;
     min-width: 288px;
-    margin: 0 auto;
+    margin: 50px auto;
+    gap: 10px;
 }
 
 .genericList-container .movie-container {
@@ -392,14 +423,16 @@ button {
 .movieDetail-container__div {
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
-    width: 90%;
+    width: 100%;
     min-width: 288px;
     margin: 0 auto;
-    /*padding: 32px 24px;
-    margin-top: 403px;
+    padding: 0 27px;
+    margin-top: 103px;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
     z-index: 1;
     position: absolute;
-    background-color: var(--purple-light-1);*/
+    background-color: transparent;
 }
 
 .movieDetail-title {
@@ -411,9 +444,9 @@ button {
 
 .movieDetail-score {
     display: inline-block;
-    text-align: right;
     width: 18%;
     font-weight: var(--font-weight-title2);
+    margin-bottom: 10px;
 }
 .movieDetail-score::before {
     content: '★';
@@ -436,7 +469,7 @@ button {
 
 .relatedMovies-scrollContainer {
     position: absolute;
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
     width: calc(100vw - 24px);
