@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./src/css/main.css">
+    <link rel="shortcut icon" href="./src/icon/movies.ico" type="image/x-icon">
     <!--<link rel="stylesheet" href="./src/css/tablet.css" media="screen and (min-width: 666px)">
     <link rel="stylesheet" href="./src/css/desktop.css" media="screen and (min-width: 1024px)">-->
     <title>RecapMovies</title>
@@ -23,16 +24,13 @@
           <input class="search-button" type="text" placeholder="Search a movie or a serie" />
           <button id="searchBtn" title="search"><span></span></button>
         </form>
-      </header>
+    </header>
       
-      <section id="categoriesPreview" class="categoriesPreview-container">
+    <section id="categoriesPreview" class="categoriesPreview-container">
         <div class="categoriesPreview-container__div">
             <h2 class="categoriesPreview-title">Categories</h2>
     
             <article class="categoriesPreview-list">
-                <span></span>
-            </article>
-            <article class="categoriesPreview-listTV">
                 <span></span>
             </article>
             <!--<article class="categoriesPreview-listTV">
@@ -41,16 +39,12 @@
                 </div>
             </article>-->
         </div>
-      </section>
-      <section id="trendingPreview" class="trendingPreview-container">
+    </section>
+    <section id="trendingPreview" class="trendingPreview-container">
         <div class="trendingPreview-header">
-          <h2 class="trendingPreview-title">Trending</h2>
-        </div>    
-        <div class="trendingPreview-header">
-            <h3>Movies</h3>
-            <button class="trendingPreview-btn"><span></span><p>  See more</p></button>
+          <h2 class="trendingPreview-title">Trending Movies</h2>
+          <button class="trendingPreview-btn"><span></span><p>  See more</p></button>
         </div>
-        
         <!--<button class="arrow prev">&lt;</button>-->
         <article class="trendingPreview-movieList">
           <!--<div class="movie-container">
@@ -61,10 +55,26 @@
             />
           </div>-->
         </article>
-        <!--<button class="arrow next">&gt;</button>-->
+    </section>
+
+    <section id="categoriesPreviewTV" class="categoriesPreview-container">
+        <div class="categoriesPreview-container__div">
+            <h2 class="categoriesPreview-title">TV Categories</h2>
+            <article class="categoriesPreview-listTV">
+                <span></span>
+            </article>
+            <!--<article class="categoriesPreview-listTV">
+                <div class="category-container">
+                    <h3 id="id28" class="category-title">Romance</h3>
+                </div>
+            </article>-->
+        </div>
+    </section>
+
+    <section id="trendingPreviewTV" class="trendingPreview-container">
         <div class="trendingPreview-header">
-            <h3>Series</h3>
-            <button class="trendingPreviewSeries-btn"><span></span><p>  See more</p></button>
+          <h2 class="trendingPreview-title">Trending Series</h2>
+          <button class="trendingPreviewSeries-btn"><span></span><p>  See more</p></button>
         </div>
         <article class="trendingPreview-serieList">
           <!--<div class="movie-container">
@@ -75,9 +85,7 @@
             />
           </div>-->
         </article>
-      </section>
-    
-    
+    </section>
     <section id="genericList" class="genericList-container inactive">
         <div class="genericList-container__div">
             <!--<div class="movie-container">
@@ -124,31 +132,29 @@
                 <h2 class="relatedMovies-title">Similars</h2>
 
                 <div class="relatedMovies-scrollContainer">
-                    <div class="movie-container">
+                    <!--<div class="movie-container">
                         <img
                             src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
                             class="movie-img"
                             alt="Nombre de la película"
                         />
-                    </div>
-
-                    <div class="movie-container">
-                        <img
-                            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-                            class="movie-img"
-                            alt="Nombre de la película"
-                        />
-                    </div>
-
-                    <div class="movie-container">
-                        <img
-                            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-                            class="movie-img"
-                            alt="Nombre de la película"
-                        />
-                    </div>
+                    </div>-->
                 </div>
+                
             </article>
+            <footer class="footer">
+                <p>@christopherdavideh • All rights reserved © 2022.</p>
+                <nav>
+                    <ul class="footer-social">
+                        <li><a href="https://www.linkedin.com/in/christopherdavideh/" target="_blank" rel="noopener" title="LinkedIn"><span class="footer-linkedin"></span></a></li>
+                        <li><a href="https://github.com/christopherdavideh" target="_blank" rel="noopener" title="GitHub"><span class="footer-github"></span></a></li>
+                        <li><a href="https://twitter.com/christopdavideh" target="_blank" rel="noopener" title="Twitter"><span class="footer-twitter"></span></a></li>
+                        <li><a href="https://www.instagram.com/christopherdavideh/" target="_blank" rel="noopener" title="Instagram"><span class="footer-instagram"></span></a></li>
+                        <li><a href="https://www.facebook.com/christopherdavideh" target="_blank" rel="noopener" title="Facebook"><span class="footer-facebook"></span></a></li>
+                        <li><a href="https://christopherdavideh.com/" target="_blank" rel="noopener" title="My Web"><span class="footer-web"></span></a></li>
+                    </ul>
+                </nav>
+            </footer>
         </div>
     </section>
 

@@ -161,11 +161,13 @@ async function getMoviesById(id, media_type){
     headerSection.style.backgroundSize = "cover";
     headerSection.style.backgroundPosition = "center";
     headerSection.style.backgroundRepeat = "no-repeat";
+    const footer = document.querySelector("footer");
+    //footer.style.marginTop = "500px"
     getCategoryData(data.genres, movieDetailCategoriesList, media_type, "light")
     if (media_type === "movie") {
-        headerCategoryTitle.textContent = `${data.title}`;
+        headerTitle.textContent = `${data.title}`;
     } else {
-        headerCategoryTitle.textContent = `${data.name}`;
+        headerTitle.textContent = `${data.name}`;
         //getMovieData(data.seasons, relatedMoviesContainer, media_type);
     }
     getRelatedMovieById(id, media_type);

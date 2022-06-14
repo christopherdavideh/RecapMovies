@@ -461,6 +461,8 @@ button {
 .relatedMovies-container {
     margin-top: 24px;
     height: 216px;
+    width: 100%;
+    min-width: 288px;
 }
 
 .relatedMovies-title {
@@ -468,13 +470,16 @@ button {
 }
 
 .relatedMovies-scrollContainer {
-    position: absolute;
+    /*position: absolute;*/
+    display: flex;
+    flex-wrap: nowrap;
     overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    width: calc(100vw - 24px);
+    min-height: 215px;
     min-width: 288px;
-    padding-bottom: 16px;
+    margin: 25px auto;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #0808084d;
 }
 
 .relatedMovies-scrollContainer .movie-container {

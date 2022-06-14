@@ -1,7 +1,9 @@
 // Sections
 const headerSection = document.querySelector('#header');
 const trendingPreviewSection = document.querySelector('#trendingPreview');
+const trendingPreviewSectionTV = document.querySelector('#trendingPreviewTV');
 const categoriesPreviewSection = document.querySelector('#categoriesPreview');
+const categoriesPreviewSectionTV = document.querySelector('#categoriesPreviewTV');
 const genericSection = document.querySelector('#genericList');
 const movieDetailSection = document.querySelector('#movieDetail');
 
