@@ -1,0 +1,37 @@
+
+.trendingPreview-movieList, .trendingPreview-serieList {
+    min-height: 450px;
+}
+
+.trendingPreview-movieList .movie-container .movie-img, .trendingPreview-serieList .movie-container .movie-img {
+    min-height: 450px;
+    width: 300px;
+    max-width: 300px;
+}
+
+.genericList-container .movie-container {
+    width: 300px;
+}
+
+.relatedMovies-scrollContainer {
+    min-height: 400px;
+}
+
+.relatedMovies-scrollContainer .movie-img {
+    min-height: 350px;
+    width: 225px;
+    max-width: 250px;
+}
+
+.movieDetail-container__div footer {
+    margin-top: 300px;
+}
+
+.movieDetail-container__div {
+    font-size: 2rem;
+    line-height: 3rem;
+}
+
+h1, h2, h3 {
+    font-size: 2.5rem;
+}
