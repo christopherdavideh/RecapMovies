@@ -13,7 +13,7 @@ trendingSeriesBtn.addEventListener('click', () => {
 arrowBtn.addEventListener('click', () => {
     //history.back();
     //location.hash = '#home';
-    if (document.domain !== "127.0.0.1") {
+    if (document.domain !== "christopherdavideh.github.io") {
         location.hash = '#home'
     } else {
         history.back();
