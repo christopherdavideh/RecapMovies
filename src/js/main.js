@@ -44,6 +44,23 @@ function getMovieData (movies, container, media_type = ""){
 function getCategoryData (genres, container, media_type, light){
     //console.log(media_type);
     container.innerHTML="";
+    container.innerHTML=`
+        <div class="category-container__load">
+            <div class="category-container__text-load"></div>
+        </div>
+        <div class="category-container__load">
+            <div class="category-container__text-load"></div>
+        </div>
+        <div class="category-container__load">
+            <div class="category-container__text-load"></div>
+        </div>
+        <div class="category-container__load">
+            <div class="category-container__text-load"></div>
+        </div>
+        <div class="category-container__load">
+            <div class="category-container__text-load"></div>
+        </div>`;
+    container.innerHTML="";
     genres.forEach(genre => {
         const category_container = document.createElement("div");
         category_container.className = "category-container";

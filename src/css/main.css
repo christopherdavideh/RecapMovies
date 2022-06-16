@@ -16,6 +16,8 @@
     --text-color: #FBFAFB;
     --text-color-2: #8392c8;
     --dark-color: #171515;
+    --primary-load: #CED6F3;
+    --secondary-load: #9CAADC;
 
     --yellow: #EECC75;
     --green: #CAD297;
@@ -297,6 +299,8 @@ button {
     flex: 0 0 auto;
     margin-right: 8px;
     display: inline-block;
+    animation-name: fadeIn;
+    animation-duration: 4s;
 }
 
 
@@ -328,6 +332,8 @@ button {
     background-color: var(--secondary-color);
     border-radius: 10px;
     cursor: pointer;
+    animation-name: fadeIn;
+    animation-duration: 2s;
 }
 
 .light {
@@ -353,6 +359,8 @@ button {
     text-overflow: ellipsis;
     font-size: 1.4rem;
     padding-top: 12px;
+    animation-name: fadeIn;
+    animation-duration: 2s;
 }
 
 /*.category-title::before {
@@ -406,6 +414,8 @@ button {
 .genericList-container .movie-container {
     display: inline-block;
     width: 135px;
+    animation-name: fadeIn;
+    animation-duration: 4s;
 }
 
 .genericList-container .movie-img {
@@ -439,7 +449,8 @@ button {
     display: inline-block;
     width: 80%;
     margin: 0 0 16px 0;
-    padding: 0;
+    padding: 0;animation-name: fadeIn;
+    animation-duration: 2s;
 }
 
 .movieDetail-score {
@@ -447,6 +458,8 @@ button {
     width: 18%;
     font-weight: var(--font-weight-title2);
     margin-bottom: 10px;
+    animation-name: fadeIn;
+    animation-duration: 2s;
 }
 .movieDetail-score::before {
     content: '★';
@@ -456,6 +469,8 @@ button {
 
 .movieDetail-description {
     margin: 0 0 24px 0;
+    animation-name: fadeIn;
+    animation-duration: 4s;
 }
 
 .relatedMovies-container {
@@ -485,6 +500,8 @@ button {
 .relatedMovies-scrollContainer .movie-container {
     display: inline-block;
     margin-right: 8px;
+    animation-name: fadeIn;
+    animation-duration: 4s;
 }
 
 .relatedMovies-scrollContainer .movie-img {
@@ -571,4 +588,169 @@ footer {
   /* Navigation */
 .inactive {
     display: none;
+}
+
+/* Loading skeleton */
+.category-container__load {
+    width: 108px;
+    min-width: 108px;
+    height: 40px;
+    background-color: var(--primary-load);
+    border-radius: 10px;
+    cursor: pointer;
+    animation-name: imageLoad;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+.category-container__load:nth-child(2){
+    animation-delay: .3s;
+}
+.category-container__load:nth-child(3){
+    animation-delay: .6s;
+}
+
+.category-container__load:nth-child(5){
+    animation-delay: .3s;
+}
+.category-container__load:nth-child(6){
+    animation-delay: .6s;
+}
+
+.category-container__text-load {
+    width: 88px;
+    min-width: 88px;
+    margin-top: 11px;
+    margin-left: 10px;
+    height: 20px;
+    background-color: var(--secondary-load);
+    border-radius: 2px;
+    animation-name: textLoad;
+    animation-duration: 2.3s;
+    animation-iteration-count: infinite;
+}
+
+.category-container__text-load:nth-child(2){
+    animation-delay: .3s;
+}
+.category-container__text-load:nth-child(3){
+    animation-delay: .6s;
+}
+
+.category-container__text-load:nth-child(5){
+    animation-delay: .3s;
+}
+.category-container__text-load:nth-child(6){
+    animation-delay: .6s;
+}
+
+
+.trendingPreview-movieList .movie-container-load, .trendingPreview-serieList .movie-container-load {
+    flex: 0 0 auto;
+    margin-right: 8px;
+    display: inline-block;
+    min-height: 225px;
+    width: 150px;
+    min-width: 150px;
+    background-color: var(--primary-load);
+    border-radius: 8px;
+    animation-name: imageLoad;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+.trendingPreview-movieList .movie-container-load:nth-child(2), trendingPreview-serieList .movie-container-load:nth-child(2){
+    animation-delay: .3s;
+}
+.trendingPreview-movieList .movie-container-load:nth-child(3), trendingPreview-serieList .movie-container-load:nth-child(3){
+    animation-delay: .6s;
+}
+.trendingPreview-movieList .movie-container-load:nth-child(5), trendingPreview-serieList .movie-container-load:nth-child(5){
+    animation-delay: .3s;
+}
+.trendingPreview-movieList .movie-container-load:nth-child(6), trendingPreview-serieList .movie-container-load:nth-child(6){
+    animation-delay: .6s;
+}
+
+.genericList-container__div .movie-container-load-generic {
+    display: inline-block;
+    width: 135px;
+    height: 205px;
+    background-color: var(--primary-load);
+    border-radius: 8px;
+    cursor: pointer;
+    animation-name: imageLoad;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+.genericList-container__div .movie-container-load-generic:nth-child(2){
+    animation-delay: .3s;
+}
+.genericList-container__div .movie-container-load-generic:nth-child(3){
+    animation-delay: .6s;
+}
+.genericList-container__div .movie-container-load-generic:nth-child(5){
+    animation-delay: .3s;
+}
+.genericList-container__div .movie-container-load-generic:nth-child(6){
+    animation-delay: .6s;
+}
+
+.relatedMovies-scrollContainer .movie-container-load-related {
+    display: inline-block;
+    width: 125px;
+    min-width: 125px;
+    max-width: 125px;
+    background-color: var(--primary-load);
+    height: 188px;
+    min-height: 188px;
+    border-radius: 8px;
+    margin-right: 8px;
+    animation-name: imageLoad;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+.relatedMovies-scrollContainer .movie-container-load-related:nth-child(2){
+    animation-delay: .3s;
+}
+.relatedMovies-scrollContainer .movie-container-load-related:nth-child(3){
+    animation-delay: .6s;
+}
+.relatedMovies-scrollContainer .movie-container-load-related:nth-child(5){
+    animation-delay: .3s;
+}
+.relatedMovies-scrollContainer .movie-container-load-related:nth-child(6){
+    animation-delay: .6s;
+}
+
+@keyframes textLoad {
+    0%, 100% {
+        background: transparent;
+    }
+    
+    50% {
+        background: var(--secondary-load);
+    }
+}
+
+@keyframes imageLoad {
+    0%, 100% {
+        background: var(--primary-load);
+    }
+    
+    50% {
+        background: transparent;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
