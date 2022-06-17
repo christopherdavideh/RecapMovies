@@ -62,7 +62,7 @@ function getMovieData (movies, container, media_type = ""){
         //movieImg.src = `${BASE_URL_IMAGE_POSTER}${movie.poster_path}`;
         console.log("img", movie.poster_path)
         if (movie.poster_path === null) {
-            movieImg.setAttribute('data-img', `/src/img/default_movie.jpg`);
+            movieImg.setAttribute('data-img', `./src/img/default_movie.jpg`);
         } else {
             movieImg.setAttribute('data-img', `${BASE_URL_IMAGE_POSTER}${movie.poster_path}`);
 
