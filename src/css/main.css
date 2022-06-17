@@ -6,11 +6,6 @@
 }
 
 :root {
-    --purple-light-1: #FBFAFB;
-    --purple-light-2: #EEEAF2;
-    --purple-medium-2: #8B48BF;
-    --purple-medium-3: #5C218A;
-    --purple-dark-1: #3E0F64;
     --primary-color: #2B55A6;
     --secondary-color: #0F2264;
     --text-color: #FBFAFB;
@@ -18,13 +13,6 @@
     --dark-color: #171515;
     --primary-load: #CED6F3;
     --secondary-load: #9CAADC;
-
-    --yellow: #EECC75;
-    --green: #CAD297;
-    --aqua: #B7EAC5;
-    --lightBlue: #A2EEE5;
-    --darkBlue: #8EA2EA;
-    --red: #F09D9D;
 
     --font-family-titles: 'DM Sans', sans-serif;
     --font-family-text: 'Inter', sans-serif;
@@ -121,6 +109,10 @@ button {
 
 .movie-img {
     border-radius: 8px;
+    min-height: 195px;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: .7s ease-in-out;
 }
 
 .categoriesPreview-list, .categoriesPreview-listTV, .categories-list {
@@ -141,7 +133,7 @@ button {
 }
 
 .header-container--long {
-    background-image: url('https://pics.filmaffinity.com/Deadpool-777527803-large.jpg');
+    background-image: url('../img/default_movie.jpg');
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.65) 89.27%, rgba(0, 0, 0, 0) 39.17%), url(https://pics.filmaffinity.com/Deadpool-777527803-large.jpg);
     background-size: cover;
     height: 900px;
@@ -723,6 +715,11 @@ footer {
 }
 .relatedMovies-scrollContainer .movie-container-load-related:nth-child(6){
     animation-delay: .6s;
+}
+
+.visible {
+    opacity: 1;
+    transform: scale(1);
 }
 
 @keyframes textLoad {

@@ -13,9 +13,34 @@ const api = axios.create({
     },
 });
 
+/* Lazy loading*/
+let options = (container) => {
+    const config = {
+        root: null,
+        rootMargin: '0px 0px 0px 0px',
+        threshold: 0.5
+    }
+    return config;
+};
+
+const target = document.querySelector('.movie-img');
+
+const loadImage = (entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            //console.log("entrada", entry);
+            entry.target.setAttribute('src', entry.target.dataset.img);
+            entry.target.setAttribute('alt', entry.target.dataset.alt);
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+};
+
 function getMovieData (movies, container, media_type = ""){
     //console.log(media_type);
     container.innerHTML="";
+    const observer = new IntersectionObserver(loadImage, options(container));
     movies.forEach(movie => {
         const movie_container = document.createElement("div");
         movie_container.className = "movie-container";
@@ -25,17 +50,24 @@ function getMovieData (movies, container, media_type = ""){
                 location.hash=`#movie=${movie.id}-${movie.media_type}`;
             });
             movieImg.className = "movie-img";
-            (movie.media_type === "movie") ? movieImg.alt = movie.title : movieImg.alt = movie.name;
+            (movie.media_type === "movie") ? movieImg.setAttribute('data-alt', movie.title) : movieImg.setAttribute('data-alt', movie.name);
         } else {
             movie_container.addEventListener('click', () => {
                 location.hash=`#movie=${movie.id}-${media_type}`;
             });
             movieImg.className = "movie-img";
-            (media_type === "movie") ? movieImg.alt = movie.title : movieImg.alt = movie.name;
+            (media_type === "movie") ? movieImg.setAttribute('data-alt', movie.title) : movieImg.setAttribute('data-alt', movie.name);
         }
 
-        movieImg.src = `${BASE_URL_IMAGE_POSTER}${movie.poster_path}`;
+        //movieImg.src = `${BASE_URL_IMAGE_POSTER}${movie.poster_path}`;
+        console.log("img", movie.poster_path)
+        if (movie.poster_path === null) {
+            movieImg.setAttribute('data-img', `/src/img/default_movie.jpg`);
+        } else {
+            movieImg.setAttribute('data-img', `${BASE_URL_IMAGE_POSTER}${movie.poster_path}`);
 
+        }
+        observer.observe(movieImg);
         movie_container.appendChild(movieImg);
         container.appendChild(movie_container);
     });
@@ -197,4 +229,5 @@ async function getRelatedMovieById(id, media_type){
     scrollHorizontal(relatedMoviesContainer);
     smoothscrollY();
 }
+
 
