@@ -159,7 +159,7 @@ async function getMoviesByCategory(id, name, media_type, page){
     });
 
     const movies = data.results;
-    console.log(data);
+    //console.log(data);
     (media_type === "movie")
         ? headerTitle.textContent = `${media_type[0].toUpperCase() + media_type.substring(1)} - ${name}`
         : headerTitle.textContent = `${media_type.toUpperCase()} - ${name}`;
@@ -180,7 +180,7 @@ async function getMoviesBySearch(query, page){
 
     const movies = data.results;
     
-    console.log("search", data.status);
+    //console.log("search", data.status);
     headerTitle.textContent = `Results: ${query}`;
 
     getMovieData(data, genericListContainer, "", page);

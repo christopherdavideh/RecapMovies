@@ -19,12 +19,21 @@ trendingSeriesBtn.addEventListener('click', () => {
 arrowBtn.addEventListener('click', () => {
     //history.back();
     //location.hash = '#home';
-    if (document.domain !== "christopherdavideh.github.io") {
+    if (document.domain !== /*"127.0.0.1"*/"christopherdavideh.github.io") {
         location.hash = '#home'
-        location.reload()
+        /*setTimeout(function(){
+            location.reload()
+        }, 100);*/
     } else {
-        history.back();
-        location.reload()
+        if (location.hash.startsWith("#movie=")) {
+            history.back();
+            setTimeout(function(){
+                location.reload()
+            }, 100);
+        } else {
+            history.back();
+        }
+        
     }
 });
 
@@ -231,7 +240,7 @@ function categoriesPage(){
     const name = category.replaceAll("%20", " ");
 
     paginated = new IntersectionObserver((entries, paginated) => {
-        console.log(entries);
+        //console.log(entries);
         entries.forEach(entry => {
             if(entry.isIntersecting){
                 page ++;
