@@ -102,6 +102,7 @@ function getCategoryData (genres, container, media_type, light){
         category_container.appendChild(categoryH3);
         category_container.addEventListener('click', () => {
             location.hash=`#category=${genre.id}-${genre.name}-${media_type}`;
+            location.reload();
         });
         container.appendChild(category_container)
     });
