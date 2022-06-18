@@ -133,7 +133,7 @@ function trendsPage(){
             }
         });
     }, {
-        rootMargin: "0px 0px 200px 0px",
+        rootMargin: "0px 0px 50px 0px",
         threshold: 1.0
     });
     getTrendingMovies(media_type, page);
@@ -176,7 +176,7 @@ function searchPage(){
             }
         });
     }, {
-        rootMargin: "0px 0px 200px 0px",
+        rootMargin: "0px 0px 50px 0px",
         threshold: 1.0
     });
 
@@ -249,7 +249,7 @@ function categoriesPage(){
             }
         });
     }, {
-        rootMargin: "0px 0px 1800px 0px",
+        rootMargin: "0px 0px 50px 0px",
         threshold: 1.0
     });
 
