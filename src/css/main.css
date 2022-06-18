@@ -14,6 +14,9 @@
     --primary-load: #CED6F3;
     --secondary-load: #9CAADC;
 
+    --yellow: #EECC75;
+    --green: #CAD297;
+
     --font-family-titles: 'DM Sans', sans-serif;
     --font-family-text: 'Inter', sans-serif;
     --font-weight-title1: 800;
@@ -449,6 +452,7 @@ button {
     display: inline-block;
     width: 18%;
     font-weight: var(--font-weight-title2);
+    font-size: 2.5rem;
     margin-bottom: 10px;
     animation-name: fadeIn;
     animation-duration: 2s;
@@ -456,7 +460,8 @@ button {
 .movieDetail-score::before {
     content: '★';
     color: var(--yellow);
-    padding-right: 4px;
+    font-size: 3.2rem;
+    padding-right: 10px;
 }
 
 .movieDetail-description {

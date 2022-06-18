@@ -18,7 +18,7 @@ let options = (container) => {
     const config = {
         root: null,
         rootMargin: '0px 0px 0px 0px',
-        threshold: 0.5
+        threshold: 0.3
     }
     return config;
 };
@@ -36,12 +36,17 @@ const loadImage = (entries, observer) => {
         }
     });
 };
+/*--------------------*/
 
-function getMovieData (movies, container, media_type = ""){
-    //console.log(media_type);
-    container.innerHTML="";
+
+
+function getMovieData (movies, container, media_type = "", page=1){
+    //console.log();
+    if (page === 1) {
+        container.innerHTML="";
+    }
     const observer = new IntersectionObserver(loadImage, options(container));
-    movies.forEach(movie => {
+    movies.results.forEach(movie => {
         const movie_container = document.createElement("div");
         movie_container.className = "movie-container";
         const movieImg = document.createElement("img");
@@ -60,7 +65,7 @@ function getMovieData (movies, container, media_type = ""){
         }
 
         //movieImg.src = `${BASE_URL_IMAGE_POSTER}${movie.poster_path}`;
-        console.log("img", movie.poster_path)
+        //console.log("img", movie.poster_path)
         if (movie.poster_path === null) {
             movieImg.setAttribute('data-img', `./src/img/default_movie.jpg`);
         } else {
@@ -70,28 +75,22 @@ function getMovieData (movies, container, media_type = ""){
         observer.observe(movieImg);
         movie_container.appendChild(movieImg);
         container.appendChild(movie_container);
+        
     });
+
+    if (container.className === "genericList-container__div") {
+        const movieAppear = document.querySelectorAll('.movie-container .movie-img');
+        if(/*movieAppear.length>= 20 && */ movies.page < movies.total_pages){
+            console.log(movies.total_pages - 1);
+            let lastMovie = movieAppear[movieAppear.length-1];
+            console.log(lastMovie);
+            paginated.observe(lastMovie);
+        }
+    }
 }
 
 function getCategoryData (genres, container, media_type, light){
     //console.log(media_type);
-    container.innerHTML="";
-    container.innerHTML=`
-        <div class="category-container__load">
-            <div class="category-container__text-load"></div>
-        </div>
-        <div class="category-container__load">
-            <div class="category-container__text-load"></div>
-        </div>
-        <div class="category-container__load">
-            <div class="category-container__text-load"></div>
-        </div>
-        <div class="category-container__load">
-            <div class="category-container__text-load"></div>
-        </div>
-        <div class="category-container__load">
-            <div class="category-container__text-load"></div>
-        </div>`;
     container.innerHTML="";
     genres.forEach(genre => {
         const category_container = document.createElement("div");
@@ -123,10 +122,10 @@ async function getTrendingMoviesPreview(media_type){
 
     const movies = data.results;
     if (media_type === "movie") {
-        getMovieData(movies, trendingMoviesPreviewList);
+        getMovieData(data, trendingMoviesPreviewList);
         scrollHorizontal(trendingMoviesPreviewList);
     } else{
-        getMovieData(movies, trendingTvPreviewList);
+        getMovieData(data, trendingTvPreviewList);
         scrollHorizontal(trendingTvPreviewList);
     }
 
@@ -163,35 +162,65 @@ async function getMoviesByCategory(id, name, media_type){
         ? headerTitle.textContent = `${media_type[0].toUpperCase() + media_type.substring(1)} - ${name}`
         : headerTitle.textContent = `${media_type.toUpperCase()} - ${name}`;
 
-    getMovieData(movies, genericListContainer, media_type);
-    console.log(movies);
+    getMovieData(data, genericListContainer, media_type);
+    //getMovieData(data, genericListContainer, media_type, data.total_pages);
+    //console.log(data, data.total_pages);
 }
 
-async function getMoviesBySearch(query){
+async function getMoviesBySearch(query, page){
     /*Uso de axios() para consumo de API Rest */
     const { data } = await api(`/search/multi`,{
         params : {
             query: query,
+            page: page,
         },
     });
 
     const movies = data.results;
+    
+    console.log("search", data);
     headerTitle.textContent = `Results: ${query}`;
 
-    getMovieData(movies, genericListContainer);
+    getMovieData(data, genericListContainer, "", page);
     
 }
 
-async function getTrendingMovies(media_type){
-    /*Uso de axios() para consumo de API Rest */
+/*async function getTrendingMovies(media_type){
+    //Uso de axios() para consumo de API Rest 
     const { data } = await api(`/trending/${media_type}/day`);
 
     const movies = data.results;
     if (media_type === "movie") {
-        getMovieData(movies, genericListContainer);
+        getMovieData(data, genericListContainer);
     } else{
-        getMovieData(movies, genericListContainer);
+        getMovieData(data, genericListContainer);
     }
+
+    //console.log(data);
+    //console.log(movies);
+}*/
+
+
+
+async function getTrendingMovies(media_type, page){
+    const {scrollTop, scrollHeight, clientHeight} = document.documentElement;
+
+    //Uso de axios() para consumo de API Rest 
+    const { data } = await api(`/trending/${media_type}/day`, {
+        params : {
+            page: page,
+        }
+    });
+    const movies = data.results;
+    //console.log(media_type, data);
+    getMovieData(data, genericListContainer, media_type, page);
+
+    /*if ((scrollTop + clientHeight) >= (scrollHeight - 15)) {
+        page ++;
+    } else {
+
+    }*/
+
 
     //console.log(data);
     //console.log(movies);
@@ -225,7 +254,7 @@ async function getMoviesById(id, media_type){
 async function getRelatedMovieById(id, media_type){
     const { data } = await api(`/${media_type}/${id}/similar`);
     const movies = data.results;
-    getMovieData(movies, relatedMoviesContainer, media_type);
+    getMovieData(data, relatedMoviesContainer, media_type);
     scrollHorizontal(relatedMoviesContainer);
     smoothscrollY();
 }
