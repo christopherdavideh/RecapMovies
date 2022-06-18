@@ -149,20 +149,22 @@ async function getCategoryMoviesPreview(media_type){
     // console.log(genres);
 }
 
-async function getMoviesByCategory(id, name, media_type){
+async function getMoviesByCategory(id, name, media_type, page){
     /*Uso de axios() para consumo de API Rest */
     const { data } = await api(`/discover/${media_type}`,{
         params : {
             with_genres: id,
+            page: page,
         },
     });
 
     const movies = data.results;
+    console.log(data);
     (media_type === "movie")
         ? headerTitle.textContent = `${media_type[0].toUpperCase() + media_type.substring(1)} - ${name}`
         : headerTitle.textContent = `${media_type.toUpperCase()} - ${name}`;
 
-    getMovieData(data, genericListContainer, media_type);
+    getMovieData(data, genericListContainer, media_type, page);
     //getMovieData(data, genericListContainer, media_type, data.total_pages);
     //console.log(data, data.total_pages);
 }
@@ -186,7 +188,7 @@ async function getMoviesBySearch(query, page){
 }
 
 /*async function getTrendingMovies(media_type){
-    //Uso de axios() para consumo de API Rest 
+    //Uso de axios() para consumo de API Rest
     const { data } = await api(`/trending/${media_type}/day`);
 
     const movies = data.results;

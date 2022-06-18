@@ -136,8 +136,7 @@ button {
 }
 
 .header-container--long {
-    background-image: url('../img/default_movie.jpg');
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.65) 89.27%, rgba(0, 0, 0, 0) 39.17%), url(https://pics.filmaffinity.com/Deadpool-777527803-large.jpg);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.65) 89.27%, rgba(0, 0, 0, 0) 39.17%), url(../img/default_movie.jpg);
     background-size: cover;
     height: 900px;
     position: fixed;
@@ -436,7 +435,7 @@ button {
     font-size: 1.6rem;
     line-height: 2.2rem;
     z-index: 1;
-    position: absolute;
+    position: relative;
     background-color: transparent;
 }
 

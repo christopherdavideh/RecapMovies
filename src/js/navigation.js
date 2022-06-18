@@ -21,8 +21,10 @@ arrowBtn.addEventListener('click', () => {
     //location.hash = '#home';
     if (document.domain !== "christopherdavideh.github.io") {
         location.hash = '#home'
+        location.reload()
     } else {
         history.back();
+        location.reload()
     }
 });
 
@@ -77,6 +79,7 @@ function homePage(){
     categoriesPreviewSectionTV.classList.remove('inactive');
     genericSection.classList.add('inactive');
     movieDetailSection.classList.add('inactive');
+    footerSection.classList.remove('inactive');
 
     headerTitle.textContent = "Recap Movies & TV";
 
@@ -107,6 +110,7 @@ function trendsPage(){
     categoriesPreviewSectionTV.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
+    //footerSection.classList.remove('inactive');
 
     const [, media_type] = location.hash.split("-");
     headerTitle.textContent = `Trending ${media_type[0].toUpperCase() + media_type.substring(1)}`;
@@ -120,7 +124,7 @@ function trendsPage(){
             }
         });
     }, {
-        rootMargin: "0px 0px 0px 0px",
+        rootMargin: "0px 0px 200px 0px",
         threshold: 1.0
     });
     getTrendingMovies(media_type, page);
@@ -147,6 +151,7 @@ function searchPage(){
     categoriesPreviewSectionTV.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
+    //footerSection.classList.remove('inactive');
 
     let [, query] = location.hash.split("=");
     if (query.includes("%20")){
@@ -162,7 +167,7 @@ function searchPage(){
             }
         });
     }, {
-        rootMargin: "0px 0px 0px 0px",
+        rootMargin: "0px 0px 200px 0px",
         threshold: 1.0
     });
 
@@ -183,7 +188,7 @@ function movieDetailsPage(){
     headerLogo.classList.add('inactive');
     headerCategoryTitle.classList.add('inactive');
     searchForm.classList.add('inactive');
-    footerSection.classList.add('inactive');
+    //footerSection.classList.add('inactive');
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
@@ -201,7 +206,7 @@ function movieDetailsPage(){
 
 function categoriesPage(){
     page = resetPage(page);
-    
+
     trendingMoviesPreviewList.innerHTML = "";
     trendingTvPreviewList.innerHTML = "";
     headerSection.classList.remove('header-container--long');
@@ -219,10 +224,25 @@ function categoriesPage(){
     categoriesPreviewSectionTV.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
+    //footerSection.classList.remove('inactive');
 
     const [, url] = location.hash.split("=");
     const [id, category, media_type] = url.split("-");
     const name = category.replaceAll("%20", " ");
 
-    getMoviesByCategory(id, name, media_type);
+    paginated = new IntersectionObserver((entries, paginated) => {
+        console.log(entries);
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                page ++;
+                getMoviesByCategory(id, name, media_type, page);
+                paginated.unobserve(entry.target);
+            }
+        });
+    }, {
+        rootMargin: "0px 0px 1800px 0px",
+        threshold: 1.0
+    });
+
+    getMoviesByCategory(id, name, media_type, page);
 }
