@@ -66,7 +66,7 @@ function getMovieData (movies, container, media_type = "", page=1){
 
         //movieImg.src = `${BASE_URL_IMAGE_POSTER}${movie.poster_path}`;
         //console.log("img", movie.poster_path)
-        if (movie.poster_path === null) {
+        if (movie.poster_path === null || movie.poster_path === undefined) {
             movieImg.setAttribute('data-img', `./src/img/default_movie.jpg`);
         } else {
             movieImg.setAttribute('data-img', `${BASE_URL_IMAGE_POSTER}${movie.poster_path}`);
@@ -81,9 +81,9 @@ function getMovieData (movies, container, media_type = "", page=1){
     if (container.className === "genericList-container__div") {
         const movieAppear = document.querySelectorAll('.movie-container .movie-img');
         if(/*movieAppear.length>= 20 && */ movies.page < movies.total_pages){
-            console.log(movies.total_pages - 1);
+            //console.log(movies.total_pages - 1);
             let lastMovie = movieAppear[movieAppear.length-1];
-            console.log(lastMovie);
+            //console.log(lastMovie);
             paginated.observe(lastMovie);
         }
     }
@@ -178,7 +178,7 @@ async function getMoviesBySearch(query, page){
 
     const movies = data.results;
     
-    console.log("search", data);
+    console.log("search", data.status);
     headerTitle.textContent = `Results: ${query}`;
 
     getMovieData(data, genericListContainer, "", page);
@@ -232,10 +232,17 @@ async function getMoviesById(id, media_type){
 
     movieDetailDescription.textContent = data.overview;
     movieDetailScore.textContent = data.vote_average;
-    headerSection.style.background = `
+    if (data.backdrop_path === null || data.backdrop_path ===undefined) {
+        headerSection.style.background = `
+        linear-gradient(180deg, rgba(0, 0, 0, 0.5) 99.27%, rgba(0, 0, 0, 0) 29.17%),
+        url("./src/img/default_movie.jpg")
+    `;
+    } else {
+        headerSection.style.background = `
         linear-gradient(180deg, rgba(0, 0, 0, 0.5) 99.27%, rgba(0, 0, 0, 0) 29.17%),
         url("https://image.tmdb.org/t/p/w1280${data.backdrop_path}")
     `;
+    }
     headerSection.style.backgroundSize = "cover";
     headerSection.style.backgroundPosition = "center";
     headerSection.style.backgroundRepeat = "no-repeat";

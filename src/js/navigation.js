@@ -26,6 +26,14 @@ arrowBtn.addEventListener('click', () => {
     }
 });
 
+function resetPage(numPage){
+    if (numPage !== 1){
+        //genericListContainer.innerHTML="";
+        numPage = 1;
+    }
+    return numPage;
+}
+
 window.addEventListener('load', navigator, false);
 window.addEventListener('hashchange', navigator, false);
 
@@ -80,6 +88,8 @@ function homePage(){
 
 function trendsPage(){
     //console.log("trends");
+    page = resetPage(page);
+
     trendingMoviesPreviewList.innerHTML = "";
     trendingTvPreviewList.innerHTML = "";
     headerSection.classList.remove('header-container--long');
@@ -118,6 +128,8 @@ function trendsPage(){
 
 function searchPage(){
     //console.log('search');
+    page = resetPage(page);
+
     trendingMoviesPreviewList.innerHTML = "";
     trendingTvPreviewList.innerHTML = "";
     headerSection.classList.remove('header-container--long');
@@ -158,6 +170,8 @@ function searchPage(){
 }
 
 function movieDetailsPage(){
+    page = resetPage(page);
+
     //console.log('Movie detail');
     trendingMoviesPreviewList.innerHTML = "";
     trendingTvPreviewList.innerHTML = "";
@@ -186,6 +200,8 @@ function movieDetailsPage(){
 }
 
 function categoriesPage(){
+    page = resetPage(page);
+    
     trendingMoviesPreviewList.innerHTML = "";
     trendingTvPreviewList.innerHTML = "";
     headerSection.classList.remove('header-container--long');
