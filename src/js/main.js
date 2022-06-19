@@ -101,8 +101,15 @@ function getCategoryData (genres, container, media_type, light){
         categoryH3.textContent = genre.name;
         category_container.appendChild(categoryH3);
         category_container.addEventListener('click', () => {
-            location.hash=`#category=${genre.id}-${genre.name}-${media_type}`;
-            location.reload();
+            if (location.hash.startsWith("#movie=")) {
+                location.hash=`#category=${genre.id}-${genre.name}-${media_type}`;
+                setTimeout(function(){
+                    location.reload();
+                }, 100);
+            } else {
+                location.hash=`#category=${genre.id}-${genre.name}-${media_type}`;
+            }
+            
         });
         container.appendChild(category_container)
     });
