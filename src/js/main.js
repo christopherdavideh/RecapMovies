@@ -101,7 +101,9 @@ function getCategoryData (genres, container, media_type, light){
         categoryH3.textContent = genre.name;
         category_container.appendChild(categoryH3);
         category_container.addEventListener('click', () => {
+            console.log(location.hash);
             if (location.hash.startsWith("#movie=")) {
+                console.log("reload");
                 location.hash=`#category=${genre.id}-${genre.name}-${media_type}`;
                 setTimeout(function(){
                     location.reload();

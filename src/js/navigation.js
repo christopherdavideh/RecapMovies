@@ -21,9 +21,6 @@ arrowBtn.addEventListener('click', () => {
     //location.hash = '#home';
     if (document.domain !== /*"127.0.0.1"*/"christopherdavideh.github.io") {
         location.hash = '#home'
-        /*setTimeout(function(){
-            location.reload()
-        }, 100);*/
     } else {
         if (location.hash.startsWith("#movie=")) {
             history.back();
