@@ -149,7 +149,11 @@ function scrollHorizontal(container){
 
 async function getTrendingMoviesPreview(media_type){
     /*Uso de axios() para consumo de API Rest */
-    const { data } = await api(`/trending/${media_type}/day`);
+    const { data } = await api(`/trending/${media_type}/day`, {
+        params: {
+            language: languageApi,
+        }
+    });
 
     const movies = data.results;
     if (media_type === "movie") {
@@ -266,7 +270,7 @@ async function getTrendingMovies(media_type, page){
 async function getMoviesById(id, media_type){
     /*Uso de axios() para consumo de API Rest */
     const { data } = await api(`/${media_type}/${id}`, {
-        params: {            
+        params: {
             language: languageApi,
         }
     });
@@ -300,7 +304,11 @@ async function getMoviesById(id, media_type){
 }
 
 async function getRelatedMovieById(id, media_type){
-    const { data } = await api(`/${media_type}/${id}/similar`);
+    const { data } = await api(`/${media_type}/${id}/similar`,{
+        params: {
+            language: languageApi
+        }
+    });
     const movies = data.results;
     getMovieData(data, relatedMoviesContainer, media_type);
     scrollHorizontal(relatedMoviesContainer);
