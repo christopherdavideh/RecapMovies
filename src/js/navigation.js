@@ -1,7 +1,7 @@
 let page = 1;
 let paginated;
 let languageApi = "en-US";
-location.hash='#home';
+//location.hash='#home';
 
 searchFormBtn.addEventListener('click', () => {
     if (searchFormInput.value) {
@@ -21,7 +21,7 @@ trendingSeriesBtn.addEventListener('click', () => {
 arrowBtn.addEventListener('click', () => {
     //history.back();
     //location.hash = '#home';
-    if (document.domain !== /*"127.0.0.1"*/ "christopherdavideh.github.io") {
+    if (document.domain !== "127.0.0.1" /*"christopherdavideh.github.io"*/) {
         location.hash = '#home'
     } else {
         if (location.hash.startsWith("#movie=")) {
