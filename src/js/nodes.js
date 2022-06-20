@@ -23,6 +23,7 @@ const headerTitle = document.querySelector('.header-title');
 const headerLogo = document.querySelector('.header-logo');
 const arrowBtn = document.querySelector('.header-arrow');
 const headerCategoryTitle = document.querySelector('.header-title--categoryView');
+const languageSection = document.querySelector('.language-section');
 
 const searchFormInput = document.querySelector('#searchForm input');
 const searchFormBtn = document.querySelector('#searchBtn');

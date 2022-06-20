@@ -23,14 +23,14 @@ let options = (container) => {
     return config;
 };
 
-const target = document.querySelector('.movie-img');
+//const target = document.querySelector('.movie-img');
 
 const loadImage = (entries, observer) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             //console.log("entrada", entry);
-            entry.target.setAttribute('src', entry.target.dataset.img);
-            entry.target.setAttribute('alt', entry.target.dataset.alt);
+            /*entry.target.setAttribute('src', entry.target.dataset.img);
+            entry.target.setAttribute('alt', entry.target.dataset.alt);*/
             entry.target.classList.add('visible');
             observer.unobserve(entry.target);
         }
@@ -46,34 +46,57 @@ function getMovieData (movies, container, media_type = "", page=1){
         container.innerHTML="";
     }
     const observer = new IntersectionObserver(loadImage, options(container));
+    console.log(movies);
     movies.results.forEach(movie => {
         const movie_container = document.createElement("div");
         movie_container.className = "movie-container";
         const movieImg = document.createElement("img");
         if (movie.media_type) {
-            movie_container.addEventListener('click', () => {
+            movieImg.addEventListener('click', () => {
                 location.hash=`#movie=${movie.id}-${movie.media_type}`;
             });
             movieImg.className = "movie-img";
-            (movie.media_type === "movie") ? movieImg.setAttribute('data-alt', movie.title) : movieImg.setAttribute('data-alt', movie.name);
+            (movie.media_type === "movie") ? movieImg.setAttribute('alt', movie.title) : movieImg.setAttribute('alt', movie.name);
         } else {
-            movie_container.addEventListener('click', () => {
+            movieImg.addEventListener('click', () => {
                 location.hash=`#movie=${movie.id}-${media_type}`;
             });
             movieImg.className = "movie-img";
-            (media_type === "movie") ? movieImg.setAttribute('data-alt', movie.title) : movieImg.setAttribute('data-alt', movie.name);
+            (media_type === "movie") ? movieImg.setAttribute('alt', movie.title) : movieImg.setAttribute('alt', movie.name);
         }
 
         //movieImg.src = `${BASE_URL_IMAGE_POSTER}${movie.poster_path}`;
         //console.log("img", movie.poster_path)
         if (movie.poster_path === null || movie.poster_path === undefined) {
-            movieImg.setAttribute('data-img', `./src/img/default_movie.jpg`);
+            movieImg.setAttribute('src', `./src/img/default_movie.jpg`);
         } else {
-            movieImg.setAttribute('data-img', `${BASE_URL_IMAGE_POSTER}${movie.poster_path}`);
+            movieImg.setAttribute('src', `${BASE_URL_IMAGE_POSTER}${movie.poster_path}`);
 
         }
-        observer.observe(movieImg);
         movie_container.appendChild(movieImg);
+        if (container.className === "genericList-container__div"){
+            const card_movie = document.createElement('div');
+            card_movie.classList.add('movie-body');
+            const card_title = document.createElement('p');
+            card_title.classList.add('movie-body-title');
+            const favorite = document.createElement("span");
+            favorite.classList.add('movie-favorite');
+            if (movie.media_type) {
+                (movie.media_type === "movie")
+                    ? card_title.innerHTML = `<b>${movie.title}</b><br><small>${movie.release_date.slice(0,4)}</small>`
+                    : card_title.innerHTML = `<b>${movie.name}</b><br><small>${movie.first_air_date.slice(0,4)}</small>`;
+            } else {
+                (media_type === "movie")
+                    ? card_title.innerHTML = `<b>${movie.title}</b><br><small>${movie.release_date.slice(0,4)}</small>`
+                    : card_title.innerHTML = `<b>${movie.name}</b><br><small>${movie.first_air_date.slice(0,4)}</small>`;
+            }
+            //observer.observe(favorite);
+            card_movie.appendChild(card_title);
+            card_movie.appendChild(favorite);
+            movie_container.appendChild(card_movie);
+        }
+        observer.observe(movie_container);
+
         container.appendChild(movie_container);
         
     });
@@ -101,9 +124,8 @@ function getCategoryData (genres, container, media_type, light){
         categoryH3.textContent = genre.name;
         category_container.appendChild(categoryH3);
         category_container.addEventListener('click', () => {
-            console.log(location.hash);
+            //console.log(location.hash);
             if (location.hash.startsWith("#movie=")) {
-                console.log("reload");
                 location.hash=`#category=${genre.id}-${genre.name}-${media_type}`;
                 setTimeout(function(){
                     location.reload();
@@ -111,7 +133,6 @@ function getCategoryData (genres, container, media_type, light){
             } else {
                 location.hash=`#category=${genre.id}-${genre.name}-${media_type}`;
             }
-            
         });
         container.appendChild(category_container)
     });
@@ -145,7 +166,7 @@ async function getTrendingMoviesPreview(media_type){
 
 async function getCategoryMoviesPreview(media_type){
     /*Uso de fetch() para consumo de API Rest */
-    const res = await fetch(`${BASE_URL}/genre/${media_type}/list?api_key=${API_KEY}`);
+    const res = await fetch(`${BASE_URL}/genre/${media_type}/list?api_key=${API_KEY}&language=${languageApi}`);
     const data = await res.json();
 
     const genres = data.genres;
@@ -165,6 +186,7 @@ async function getMoviesByCategory(id, name, media_type, page){
         params : {
             with_genres: id,
             page: page,
+            language: languageApi,
         },
     });
 
@@ -181,8 +203,10 @@ async function getMoviesByCategory(id, name, media_type, page){
 
 async function getMoviesBySearch(query, page){
     /*Uso de axios() para consumo de API Rest */
+    //console.log(query);
     const { data } = await api(`/search/multi`,{
         params : {
+            language: languageApi,
             query: query,
             page: page,
         },
@@ -190,7 +214,7 @@ async function getMoviesBySearch(query, page){
 
     const movies = data.results;
     
-    //console.log("search", data.status);
+    //console.log("search", data);
     headerTitle.textContent = `Results: ${query}`;
 
     getMovieData(data, genericListContainer, "", page);
@@ -221,6 +245,7 @@ async function getTrendingMovies(media_type, page){
     const { data } = await api(`/trending/${media_type}/day`, {
         params : {
             page: page,
+            language: languageApi,
         }
     });
     const movies = data.results;
@@ -240,7 +265,11 @@ async function getTrendingMovies(media_type, page){
 
 async function getMoviesById(id, media_type){
     /*Uso de axios() para consumo de API Rest */
-    const { data } = await api(`/${media_type}/${id}`);
+    const { data } = await api(`/${media_type}/${id}`, {
+        params: {            
+            language: languageApi,
+        }
+    });
 
     movieDetailDescription.textContent = data.overview;
     movieDetailScore.textContent = data.vote_average;

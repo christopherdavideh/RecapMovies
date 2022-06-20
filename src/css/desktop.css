@@ -1,10 +1,37 @@
-.movie-img {
-    min-height: 400px;
+:root {
+    --primary-color: #2B55A6;
+    --secondary-color: #0F2264;
+    --text-color: #FBFAFB;
+    --text-color-2: #8392c8;
+    --dark-color: #171515;
+    --primary-load: #CED6F3;
+    --secondary-load: #9CAADC;
+
+    --yellow: #EECC75;
+    --green: #CAD297;
+
+    --font-family-titles: 'DM Sans', sans-serif;
+    --font-family-text: 'Inter', sans-serif;
+    --font-weight-title1: 800;
+    --font-weight-title2: 700;
+    --font-weight-text1: 400;
+    --font-weight-text2: 500;
 }
 
-.trendingPreview-movieList, .trendingPreview-serieList {
+.movie-container {
+    min-height: 450px;
+    height: 450px;
+    width: 300px;
+    min-width: 300px;
+}
+
+.movie-img {
     min-height: 450px;
 }
+
+/*.trendingPreview-movieList, .trendingPreview-serieList {
+    min-height: 450px;
+}*/
 
 .trendingPreview-movieList .movie-container .movie-img, .trendingPreview-serieList .movie-container .movie-img {
     min-height: 450px;
@@ -14,16 +41,20 @@
 
 .genericList-container .movie-container {
     width: 300px;
+    min-height: 550px;
+    margin-bottom: 20px;
+    background-color: var(--secondary-color);
 }
 
 .relatedMovies-scrollContainer {
-    min-height: 400px;
+    min-height: 450px;
 }
 
 .relatedMovies-scrollContainer .movie-img {
-    min-height: 350px;
-    width: 225px;
-    max-width: 250px;
+    min-height: 450px;
+    width: 300px;
+    max-width: 300px;
+    border-radius: 8px;
 }
 
 .movieDetail-container__div footer {
@@ -72,4 +103,14 @@ h1,h2, h3 {
 .trendingPreview-movieList .movie-img .visible {
     opacity: 1;
     transform: scale(1);
+}
+
+.movie-body .movie-body-title {
+    font-size: 1.8rem;
+    line-height: 2.5rem;
+}
+
+.movie-favorite {
+    width: 40px;
+    height: 40px;
 }

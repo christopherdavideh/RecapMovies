@@ -13,12 +13,19 @@
 </head>
 <body>
     <header id="header" class="header-container">
-        <section>
-            <span class="header-arrow inactive">&lt;</span>
-            <span class="header-logo"></span> 
-            <h1 class="header-title">Recap Movies & TV</h1>
-            <h1 class="header-title header-title--categoryView inactive">Acción</h1>
-        </section>
+        <article>
+            <section>
+                <span class="header-arrow inactive">&lt;</span>
+                <span class="header-logo"></span> 
+                <h1 class="header-title">Recap Movies & TV</h1>
+                <h1 class="header-title header-title--categoryView inactive">Acción</h1>
+            </section>
+            <section class="language-section">
+                <span class="flag-mx" onclick="languagePage('es-MX')"></span>
+                <span class="flag-us" onclick="languagePage('en-US')"></span>
+                <span class="flag-fr" onclick="languagePage('fr')"></span>
+            </section>
+        </article>
     
         <form id="searchForm" class="header-searchForm">
           <input class="search-button" type="text" placeholder="Search a movie or a serie" />

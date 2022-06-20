@@ -108,15 +108,46 @@ button {
 
 .movie-container {
     cursor: pointer;
-}
-
-.movie-img {
+    position: relative;
+    min-height: 225px;
+    width: 155px;
+    min-width: 155px;
+    max-width: 155px;
+    display: block;
     border-radius: 8px;
-    min-height: 195px;
     opacity: 0;
     transform: scale(0.9);
     transition: .7s ease-in-out;
 }
+
+.movie-img {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    min-height: 225px;
+    margin-bottom: 0px;
+
+}
+
+.flag-mx, .flag-us, .flag-fr {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.flag-mx {
+    background-image: url("../icon/mx_icon.svg");
+}
+.flag-us {
+    background-image: url("../icon/us_icon.svg");
+}
+.flag-fr {
+    background-image: url("../icon/fr_icon.svg");
+}
+
 
 .categoriesPreview-list, .categoriesPreview-listTV, .categories-list {
     display: flex;
@@ -240,7 +271,7 @@ button {
 }
 
 
-  /* Trending */
+/* Trending */
 .trendingPreview-header {
     display: flex;
     align-items: center;
@@ -286,6 +317,7 @@ button {
     padding: 10px;
     border-radius: 8px;
     background-color: #0808084d;
+    gap: 8px;
 }
 
 
@@ -299,12 +331,13 @@ button {
 
 
 .trendingPreview-movieList .movie-container .movie-img, .trendingPreview-serieList .movie-container .movie-img  {
-    min-height: 100%;
-    max-height: 225px;
-    width: 150px;
-    min-width: 150px;
-    max-width: 150px;
+    min-height: 231px;
+    max-height: 275px;
+    width: 155px;
+    min-width: 155px;
+    max-width: 155px;
     display: block;
+    border-radius: 8px;
 }
 
 .trendingPreview-container h3 {
@@ -312,7 +345,7 @@ button {
     margin-left: 5px;
 }
 
-  /* Categories */
+/* Categories */
 
 .categoriesPreview-container .categoriesPreview-container__div {
     margin: 0 auto;
@@ -388,7 +421,7 @@ button {
 #id37 { --idColor: var(--darkBlue); }
 */
 
-  /* Generic List (search, trending & category) */
+/* Generic List (search, trending & category) */
 .genericList-container {
     width: 100%;
     min-width: 320px;
@@ -407,9 +440,11 @@ button {
 
 .genericList-container .movie-container {
     display: inline-block;
-    width: 135px;
+    width: 155px;
     animation-name: fadeIn;
     animation-duration: 4s;
+    min-height: 295px;
+    background-color: var(--secondary-color);
 }
 
 .genericList-container .movie-img {
@@ -417,8 +452,34 @@ button {
     width: 100%;
 }
 
+.genericList-container__div .movie-body{
+    width: 100%;
+    min-height: 50px;
+    margin-top: 0;
+    padding: 10px;
+    background-color: var(--secondary-color);
+    display: flex;
+    justify-content: space-between;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    
+}
+.movie-body .movie-body-title {
+    width: 80%;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+}
 
-  /* Movie Detail */
+.movie-favorite {
+    display: inline-block;
+    background-image: url("../icon/unfavorite_icon.svg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+/* Movie Detail */
 .movieDetail-container {
     width: 100%;
     min-width: 320px;
@@ -498,15 +559,13 @@ button {
     margin-right: 8px;
     animation-name: fadeIn;
     animation-duration: 4s;
+    width: 155px;
 }
 
 .relatedMovies-scrollContainer .movie-img {
-    width: 125px;
-    min-width: 125px;
-    max-width: 125px;
-    height: 187.5px;
-    min-height: 187.5px;
-    max-height: 187.5px;
+    display: inline-block;
+    width: 100%;
+    border-radius: 8px;
 }
 
 

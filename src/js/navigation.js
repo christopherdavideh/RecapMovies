@@ -1,5 +1,7 @@
 let page = 1;
 let paginated;
+let languageApi = "en-US";
+location.hash='#home';
 
 searchFormBtn.addEventListener('click', () => {
     if (searchFormInput.value) {
@@ -19,7 +21,7 @@ trendingSeriesBtn.addEventListener('click', () => {
 arrowBtn.addEventListener('click', () => {
     //history.back();
     //location.hash = '#home';
-    if (document.domain !== /*"127.0.0.1"*/"christopherdavideh.github.io") {
+    if (document.domain !== "127.0.0.1" /*"christopherdavideh.github.io"*/) {
         location.hash = '#home'
     } else {
         if (location.hash.startsWith("#movie=")) {
@@ -32,6 +34,14 @@ arrowBtn.addEventListener('click', () => {
         }
     }
 });
+
+function languagePage(language){
+    languageApi = language;
+    
+    const [url_path,] = location.hash.split("/");
+    location.hash = url_path + "/" + language;
+    //location.reload();
+}
 
 function resetPage(numPage){
     if (numPage !== 1){
@@ -77,6 +87,7 @@ function homePage(){
     headerLogo.classList.remove('inactive');
     headerCategoryTitle.classList.add('inactive');
     searchForm.classList.remove('inactive');
+    languageSection.classList.remove('inactive');
 
     trendingPreviewSection.classList.remove('inactive');
     categoriesPreviewSection.classList.remove('inactive');
@@ -108,6 +119,7 @@ function trendsPage(){
     headerLogo.classList.add('inactive');
     headerCategoryTitle.classList.add('inactive');
     searchForm.classList.remove('inactive');
+    languageSection.classList.add('inactive');
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
@@ -149,6 +161,7 @@ function searchPage(){
     headerLogo.classList.add('inactive');
     headerCategoryTitle.classList.add('inactive');
     searchForm.classList.remove('inactive');
+    languageSection.classList.add('inactive');
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
@@ -193,6 +206,7 @@ function movieDetailsPage(){
     headerLogo.classList.add('inactive');
     headerCategoryTitle.classList.add('inactive');
     searchForm.classList.add('inactive');
+    languageSection.classList.add('inactive');
     //footerSection.classList.add('inactive');
 
     trendingPreviewSection.classList.add('inactive');
@@ -222,6 +236,7 @@ function categoriesPage(){
     headerLogo.classList.add('inactive');
     headerCategoryTitle.classList.add('inactive');
     searchForm.classList.remove('inactive');
+    languageSection.classList.add('inactive');
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
