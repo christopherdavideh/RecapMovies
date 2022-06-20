@@ -1,6 +1,8 @@
 let page = 1;
 let paginated;
-let languageApi = "en-US";
+let languageApi = "";
+let maxpage;
+
 //location.hash='#home';
 
 searchFormBtn.addEventListener('click', () => {
@@ -24,20 +26,19 @@ arrowBtn.addEventListener('click', () => {
     if (document.domain !== /*"127.0.0.1"*/"christopherdavideh.github.io") {
         location.hash = '#home'
     } else {
-        if (location.hash.startsWith("#movie=")) {
+        /*if (location.hash.startsWith("#movie=")) {
             history.back();
             setTimeout(function(){
                 location.reload()
             }, 100);
-        } else {
+        } else {*/
             history.back();
-        }
+        //}
     }
 });
 
 function languagePage(language){
     languageApi = language;
-    
     const [url_path,] = location.hash.split("/");
     location.hash = url_path + "/" + language;
     //location.reload();
@@ -132,7 +133,7 @@ function trendsPage(){
     const [, media_type] = location.hash.split("-");
     headerTitle.textContent = `Trending ${media_type[0].toUpperCase() + media_type.substring(1)}`;
     //getTrendingMovies(media_type);
-    paginated = new IntersectionObserver((entries, paginated) => {
+   /*paginated = new IntersectionObserver((entries, paginated) => {
         entries.forEach(entry => {
             if(entry.isIntersecting){
                 page ++;
@@ -143,7 +144,19 @@ function trendsPage(){
     }, {
         rootMargin: "0px 0px 50px 0px",
         threshold: 1.0
+    });*/
+
+    window.addEventListener('scroll', () =>{
+        const {scrollTop, scrollHeight, clientHeight} = document.documentElement;
+
+        const scrollBottom = (scrollTop + clientHeight) >= (scrollHeight-80);
+        if(scrollBottom && page < maxpage){
+            console.log(maxpage);
+            page++
+            getTrendingMovies(media_type, page);
+        }
     });
+
     getTrendingMovies(media_type, page);
 }
 
@@ -176,7 +189,7 @@ function searchPage(){
         query = query.replaceAll("%20", " ").trim();
         //console.log("trim", query.length)
     }
-    paginated = new IntersectionObserver((entries, paginated) => {
+    /*paginated = new IntersectionObserver((entries, paginated) => {
         entries.forEach(entry => {
             if(entry.isIntersecting){
                 page ++;
@@ -187,6 +200,16 @@ function searchPage(){
     }, {
         rootMargin: "0px 0px 50px 0px",
         threshold: 1.0
+    });*/
+    window.addEventListener('scroll', () =>{
+        const {scrollTop, scrollHeight, clientHeight} = document.documentElement;
+
+        const scrollBottom = (scrollTop + clientHeight) >= (scrollHeight-80);
+        if(scrollBottom && page < maxpage){
+            console.log(maxpage);
+            page++
+            getMoviesBySearch(query, page);
+        }
     });
 
     getMoviesBySearch(query, page);
@@ -250,7 +273,7 @@ function categoriesPage(){
     const [id, category, media_type] = url.split("-");
     const name = category.replaceAll("%20", " ");
 
-    paginated = new IntersectionObserver((entries, paginated) => {
+    /*paginated = new IntersectionObserver((entries, paginated) => {
         //console.log(entries);
         entries.forEach(entry => {
             if(entry.isIntersecting){
@@ -262,6 +285,17 @@ function categoriesPage(){
     }, {
         rootMargin: "0px 0px 50px 0px",
         threshold: 1.0
+    });*/
+
+    window.addEventListener('scroll', () =>{
+        const {scrollTop, scrollHeight, clientHeight} = document.documentElement;
+
+        const scrollBottom = (scrollTop + clientHeight) >= (scrollHeight-80);
+        if(scrollBottom && page < maxpage){
+            console.log(maxpage);
+            page++
+            getMoviesByCategory(id, name, media_type, page);
+        }
     });
 
     getMoviesByCategory(id, name, media_type, page);

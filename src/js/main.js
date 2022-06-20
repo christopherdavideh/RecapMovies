@@ -81,14 +81,20 @@ function getMovieData (movies, container, media_type = "", page=1){
             card_title.classList.add('movie-body-title');
             const favorite = document.createElement("span");
             favorite.classList.add('movie-favorite');
+            let release_date;
+            let first_air_date;
+            (movie.release_date) ? release_date = movie.release_date.slice(0,4) : release_date = "";
+            (movie.first_air_date) ? first_air_date = movie.first_air_date.slice(0,4) : first_air_date = "";
+            
+            
             if (movie.media_type) {
                 (movie.media_type === "movie")
-                    ? card_title.innerHTML = `<b>${movie.title}</b><br><small>${movie.release_date.slice(0,4)}</small>`
-                    : card_title.innerHTML = `<b>${movie.name}</b><br><small>${movie.first_air_date.slice(0,4)}</small>`;
+                    ? card_title.innerHTML = `<b>${movie.title}</b><br><small>${release_date}</small>`
+                    : card_title.innerHTML = `<b>${movie.name}</b><br><small>${first_air_date}</small>`;
             } else {
                 (media_type === "movie")
-                    ? card_title.innerHTML = `<b>${movie.title}</b><br><small>${movie.release_date.slice(0,4)}</small>`
-                    : card_title.innerHTML = `<b>${movie.name}</b><br><small>${movie.first_air_date.slice(0,4)}</small>`;
+                    ? card_title.innerHTML = `<b>${movie.title}</b><br><small>${release_date}</small>`
+                    : card_title.innerHTML = `<b>${movie.name}</b><br><small>${first_air_date}</small>`;
             }
             //observer.observe(favorite);
             card_movie.appendChild(card_title);
@@ -101,15 +107,15 @@ function getMovieData (movies, container, media_type = "", page=1){
         
     });
 
-    if (container.className === "genericList-container__div") {
+    /*if (container.className === "genericList-container__div") {
         const movieAppear = document.querySelectorAll('.movie-container .movie-img');
-        if(/*movieAppear.length>= 20 && */ movies.page < movies.total_pages){
+        if(movieAppear.length>= 20 &&  movies.page < movies.total_pages){
             //console.log(movies.total_pages - 1);
             let lastMovie = movieAppear[movieAppear.length-1];
             //console.log(lastMovie);
             paginated.observe(lastMovie);
         }
-    }
+    }*/
 }
 
 function getCategoryData (genres, container, media_type, light){
@@ -125,14 +131,14 @@ function getCategoryData (genres, container, media_type, light){
         category_container.appendChild(categoryH3);
         category_container.addEventListener('click', () => {
             //console.log(location.hash);
-            if (location.hash.startsWith("#movie=")) {
+            /*if (location.hash.startsWith("#movie=")) {
                 location.hash=`#category=${genre.id}-${genre.name}-${media_type}`;
                 setTimeout(function(){
                     location.reload();
                 }, 100);
-            } else {
+            } else {*/
                 location.hash=`#category=${genre.id}-${genre.name}-${media_type}`;
-            }
+            //}
         });
         container.appendChild(category_container)
     });
@@ -195,6 +201,7 @@ async function getMoviesByCategory(id, name, media_type, page){
     });
 
     const movies = data.results;
+    maxpage = data.total_pages;
     //console.log(data);
     (media_type === "movie")
         ? headerTitle.textContent = `${media_type[0].toUpperCase() + media_type.substring(1)} - ${name}`
@@ -217,6 +224,7 @@ async function getMoviesBySearch(query, page){
     });
 
     const movies = data.results;
+    maxpage = data.total_pages;
     
     //console.log("search", data);
     headerTitle.textContent = `Results: ${query}`;
@@ -253,6 +261,7 @@ async function getTrendingMovies(media_type, page){
         }
     });
     const movies = data.results;
+    maxpage = data.total_pages;
     //console.log(media_type, data);
     getMovieData(data, genericListContainer, media_type, page);
 
