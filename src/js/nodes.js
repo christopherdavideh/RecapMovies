@@ -30,6 +30,7 @@ const searchFormBtn = document.querySelector('#searchBtn');
 
 const trendingBtn = document.querySelector('.trendingPreview-btn');
 const trendingSeriesBtn = document.querySelector('.trendingPreviewSeries-btn');
+const favoriteBtn = document.querySelector('.favorites-btn');
 
 const movieDetailTitle = document.querySelector('.movieDetail-title');
 const movieDetailDescription = document.querySelector('.movieDetail-description');

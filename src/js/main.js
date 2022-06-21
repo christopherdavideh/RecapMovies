@@ -13,6 +13,34 @@ const api = axios.create({
     },
 });
 
+function likedMoviesList() {
+    const item = JSON.parse(localStorage.getItem('liked_movies'));
+    let movies;
+
+    if (item) {
+        movies = item;
+    } else {
+        movies = {};
+    }
+    
+    return movies;
+}
+  
+function likeMovie(movie) {
+    // movie.id
+    const likedMovies = likedMoviesList();
+
+    if (likedMovies[movie.id]) {
+        likedMovies[movie.id] = undefined;
+    } else {
+        likedMovies[movie.id] = movie;
+    }
+
+    localStorage.setItem('liked_movies', JSON.stringify(likedMovies));
+}
+
+
+
 /* Lazy loading*/
 let options = (container) => {
     const config = {
@@ -46,22 +74,22 @@ function getMovieData (movies, container, media_type = "", page=1){
         container.innerHTML="";
     }
     const observer = new IntersectionObserver(loadImage, options(container));
-    console.log(movies);
-    movies.results.forEach(movie => {
+    //console.log(movies);
+    movies.forEach(movie => {
         const movie_container = document.createElement("div");
         movie_container.className = "movie-container";
         const movieImg = document.createElement("img");
+        movieImg.className = "movie-img";
+        //console.log(movie);
         if (movie.media_type) {
             movieImg.addEventListener('click', () => {
                 location.hash=`#movie=${movie.id}-${movie.media_type}`;
             });
-            movieImg.className = "movie-img";
             (movie.media_type === "movie") ? movieImg.setAttribute('alt', movie.title) : movieImg.setAttribute('alt', movie.name);
         } else {
             movieImg.addEventListener('click', () => {
                 location.hash=`#movie=${movie.id}-${media_type}`;
             });
-            movieImg.className = "movie-img";
             (media_type === "movie") ? movieImg.setAttribute('alt', movie.title) : movieImg.setAttribute('alt', movie.name);
         }
 
@@ -81,12 +109,24 @@ function getMovieData (movies, container, media_type = "", page=1){
             card_title.classList.add('movie-body-title');
             const favorite = document.createElement("span");
             favorite.classList.add('movie-favorite');
+            likedMoviesList()[movie.id] && favorite.classList.add('liked');
+            favorite.addEventListener('click', () => {
+                favorite.classList.toggle('liked');
+                if (location.hash.startsWith("#category=")){
+                    const [, url] = location.hash.split("=");
+                    const [, , type] = url.split("-");
+                    if (!movie.media_type) {
+                        movie.media_type = type;
+                    }
+
+                }
+                likeMovie(movie);
+            });
             let release_date;
             let first_air_date;
             (movie.release_date) ? release_date = movie.release_date.slice(0,4) : release_date = "";
             (movie.first_air_date) ? first_air_date = movie.first_air_date.slice(0,4) : first_air_date = "";
-            
-            
+
             if (movie.media_type) {
                 (movie.media_type === "movie")
                     ? card_title.innerHTML = `<b>${movie.title}</b><br><small>${release_date}</small>`
@@ -104,7 +144,7 @@ function getMovieData (movies, container, media_type = "", page=1){
         observer.observe(movie_container);
 
         container.appendChild(movie_container);
-        
+
     });
 
     /*if (container.className === "genericList-container__div") {
@@ -163,10 +203,10 @@ async function getTrendingMoviesPreview(media_type){
 
     const movies = data.results;
     if (media_type === "movie") {
-        getMovieData(data, trendingMoviesPreviewList);
+        getMovieData(movies, trendingMoviesPreviewList);
         scrollHorizontal(trendingMoviesPreviewList);
     } else{
-        getMovieData(data, trendingTvPreviewList);
+        getMovieData(movies, trendingTvPreviewList);
         scrollHorizontal(trendingTvPreviewList);
     }
 
@@ -207,8 +247,15 @@ async function getMoviesByCategory(id, name, media_type, page){
         ? headerTitle.textContent = `${media_type[0].toUpperCase() + media_type.substring(1)} - ${name}`
         : headerTitle.textContent = `${media_type.toUpperCase()} - ${name}`;
 
-    getMovieData(data, genericListContainer, media_type, page);
-    //getMovieData(data, genericListContainer, media_type, data.total_pages);
+    getMovieData(movies, genericListContainer, media_type, page);
+    //getMovieData(movies, genericListContainer, media_type, data.total_pages);
+    //console.log(data, data.total_pages);
+}
+
+async function getMoviesByFavorite(){
+    const likedMovies = likedMoviesList();
+    const moviesArray = Object.values(likedMovies);
+    getMovieData(moviesArray, genericListContainer);
     //console.log(data, data.total_pages);
 }
 
@@ -229,7 +276,7 @@ async function getMoviesBySearch(query, page){
     //console.log("search", data);
     headerTitle.textContent = `Results: ${query}`;
 
-    getMovieData(data, genericListContainer, "", page);
+    getMovieData(movies, genericListContainer, "", page);
     
 }
 
@@ -239,9 +286,9 @@ async function getMoviesBySearch(query, page){
 
     const movies = data.results;
     if (media_type === "movie") {
-        getMovieData(data, genericListContainer);
+        getMovieData(movies, genericListContainer);
     } else{
-        getMovieData(data, genericListContainer);
+        getMovieData(movies, genericListContainer);
     }
 
     //console.log(data);
@@ -263,17 +310,7 @@ async function getTrendingMovies(media_type, page){
     const movies = data.results;
     maxpage = data.total_pages;
     //console.log(media_type, data);
-    getMovieData(data, genericListContainer, media_type, page);
-
-    /*if ((scrollTop + clientHeight) >= (scrollHeight - 15)) {
-        page ++;
-    } else {
-
-    }*/
-
-
-    //console.log(data);
-    //console.log(movies);
+    getMovieData(movies, genericListContainer, media_type, page);
 }
 
 async function getMoviesById(id, media_type){
@@ -303,11 +340,12 @@ async function getMoviesById(id, media_type){
     const footer = document.querySelector("footer");
     //footer.style.marginTop = "500px"
     getCategoryData(data.genres, movieDetailCategoriesList, media_type, "light")
+    headerTitle.textContent = "";
     if (media_type === "movie") {
         headerTitle.textContent = `${data.title}`;
     } else {
         headerTitle.textContent = `${data.name}`;
-        //getMovieData(data.seasons, relatedMoviesContainer, media_type);
+        //getMovieData(movies.seasons, relatedMoviesContainer, media_type);
     }
     getRelatedMovieById(id, media_type);
 }
@@ -319,7 +357,7 @@ async function getRelatedMovieById(id, media_type){
         }
     });
     const movies = data.results;
-    getMovieData(data, relatedMoviesContainer, media_type);
+    getMovieData(movies, relatedMoviesContainer, media_type);
     scrollHorizontal(relatedMoviesContainer);
     smoothscrollY();
 }

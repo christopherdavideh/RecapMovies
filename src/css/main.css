@@ -169,7 +169,8 @@ button {
 .header-container--long {
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.65) 89.27%, rgba(0, 0, 0, 0) 39.17%), url(../img/default_movie.jpg);
     background-size: cover;
-    height: 900px;
+    background-repeat: no-repeat;
+    height: 1000px;
     position: fixed;
     top: 0;
     width: 100%;
@@ -180,8 +181,9 @@ button {
 }
 
 .header-title {
-    margin-bottom: 36px;
+    padding-top: 16px;
     margin-left: 70px;
+    margin-bottom: 15px;
 }
 
 .header-logo {
@@ -193,7 +195,7 @@ button {
     height: 60px;
     width: 60px;
     position: absolute;
-    top: calc(25% - 12.5px);
+    /*top: calc(25% - 12.5px);*/
 }
 
 .header-arrow {
@@ -204,7 +206,7 @@ button {
     margin-left: 10px;
     cursor: pointer;
     position: absolute;*/
-    top: calc(6% - 7.5px);
+    margin-top: 9px;
     border-radius: 50px;
     background-color: var(--secondary-color);
     width: 50px;
@@ -222,10 +224,10 @@ button {
     color: var(--purple-light-1);
 }
 
-.header-container section {
+/*.header-container section {
     width: 90%;
     margin: 0 auto;
-}
+}*/
 
 .header-searchForm {
     display: flex;
@@ -270,7 +272,42 @@ button {
     margin-top: 5px;
 }
 
+.header-container article {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+}
 
+.header-title-logo{
+    width: 65%;
+    min-width: 288px;
+}
+
+.favorites-btn{
+    width: 108px;
+    min-width: 108px;
+    height: 35px;
+    background-color: var(--text-color);
+    color: var(--primary-color);
+    border-radius: 10px;
+    cursor: pointer;
+    justify-content: end;
+}
+
+.language-section{
+    width: 10%;
+    min-width: 150px;
+    text-align: right;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: end;
+}
 /* Trending */
 .trendingPreview-header {
     display: flex;
@@ -462,8 +499,9 @@ button {
     justify-content: space-between;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    
+    align-items: center;
 }
+
 .movie-body .movie-body-title {
     width: 80%;
     font-size: 1.2rem;
@@ -473,6 +511,16 @@ button {
 .movie-favorite {
     display: inline-block;
     background-image: url("../icon/unfavorite_icon.svg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+
+.liked {
+    display: inline-block;
+    background-image: url("../icon/favorite_icon.svg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -492,7 +540,7 @@ button {
     min-width: 288px;
     margin: 0 auto;
     padding: 0 27px;
-    margin-top: 103px;
+    margin-top: 203px;
     font-size: 1.6rem;
     line-height: 2.2rem;
     z-index: 1;
